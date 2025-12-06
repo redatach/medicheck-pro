@@ -1,0 +1,11 @@
+﻿{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "RAILPACK",
+    "buildCommand": "cd backend && pip install --upgrade pip && pip install -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "cd backend && gunicorn medicheck.wsgi --bind 0.0.0.0:$PORT",
+    "healthcheckPath": "/admin"
+  }
+}
