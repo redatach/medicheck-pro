@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+  },
+  "deploy": {
+    "startCommand": "python manage.py migrate && gunicorn medicheck.wsgi:application",
+    "healthcheckPath": "/api/health/",
+    "restartPolicyType": "ON_FAILURE",
+    "numReplicas": 1
+  },
+  "variables": {
+    "DJANGO_SECRET_KEY": {
+      "description": "Clé secrète Django",
+      "generator": "secret"
+    },
+    "DJANGO_DEBUG": {
+      "description": "Mode debug",
+      "value": "False"
+    },
+    "ALLOWED_HOSTS": {
+      "description": "Hôtes autorisés",
+      "value": ".railway.app,localhost,127.0.0.1"
+    },
+    "CORS_ALLOWED_ORIGINS": {
+      "description": "Origines CORS autorisées",
+      "value": "https://*.railway.app,http://localhost:8080"
+    },
+    "MYSQL_DATABASE": {
+      "description": "Nom de la base MySQL",
+      "value": "railway"
+    }
+  }
+}

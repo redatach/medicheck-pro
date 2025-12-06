@@ -1,0 +1,10 @@
+﻿# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Environnement
+.env
